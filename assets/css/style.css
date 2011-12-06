@@ -1,0 +1,10 @@
+.woo_affiliate .browser-window, .woo_affiliate img, .woo_affiliate a { border: 0 !important; padding: 0 !important; margin: 0 !important; }
+.woo_affiliate .image-container { position: relative; }
+.woo_affiliate .browser-window { max-width: 301px; }
+.woo_affiliate .browser-window img { max-width: 100%; height: auto; }
+.woo_affiliate .image { position: absolute; z-index: 2; width: 99.7%; max-width: 304px; top: 9%; height: 88%; overflow: hidden; }
+.woo_affiliate .image img { max-width: 100%; height: auto; }
+
+.woo_affiliate .image a { display: block; max-width: 99.3%; }
+.woo_affiliate .image a:hover { background: #EBEBEB url(../images/screenshot-hover.png) no-repeat 50% 40%; }
+.woo_affiliate .image a:hover img { -moz-opacity: 0.4; -webkit-opacity: 0.4; opacity: 0.4; }
