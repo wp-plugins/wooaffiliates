@@ -51,7 +51,7 @@ class Woo_Affiliates extends WP_Widget {
 	var $plugin_url;
 	
 	var $defaults = array(
-						'username' => '', 
+                        'zlink' => '', 
 						'display_type' => 'latest', 
 						'products' => array(), 
 						'display_image' => 1, 
@@ -105,8 +105,8 @@ class Woo_Affiliates extends WP_Widget {
 	function widget( $args, $instance ) {  
 		$html = '';
 		
-		/* Don't display anything if we don't have the affiliate's username. */
-		if ( ! isset( $instance['username'] ) || ( isset( $instance['username'] ) && ( $instance['username'] == '' ) ) ) { return; }
+		/* Don't display anything if we don't have the affiliate's Zferral link. */
+		if ( ! isset( $instance['zlink'] ) || ( isset( $instance['zlink'] ) && ( $instance['zlink'] == '' ) ) ) { return; }
 		
 		extract( $args, EXTR_SKIP );
 		
@@ -155,7 +155,7 @@ class Woo_Affiliates extends WP_Widget {
 		$instance = $old_instance;
 
 		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['username'] = sanitize_user( strip_tags( $new_instance['username'] ) );
+        $instance['zlink'] = strip_tags( $new_instance['zlink'] );
 		$instance['display_type'] = esc_attr( $new_instance['display_type'] );
 		$instance['products'] = array( esc_attr( $new_instance['products'] ) ); // Store as an array for future-proofing.
 		$instance['display_image'] = (bool) esc_attr( $new_instance['display_image'] );
@@ -206,19 +206,21 @@ class Woo_Affiliates extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (optional):', 'woothemes' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>"  value="<?php echo $instance['title']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
 		</p>
-		<!-- Widget Username: Text Input -->
+                
+                <!-- Widget Zferral campaign link: Text Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'username' ); ?>"><?php _e( 'Username (required):', 'woothemes' ); ?></label>
-			<input type="text" name="<?php echo $this->get_field_name( 'username' ); ?>"  value="<?php echo $instance['username']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'username' ); ?>" />
+			<label for="<?php echo $this->get_field_id( 'zlink' ); ?>"><?php _e( 'Zferral campaign link (required):', 'woothemes' ); ?></label>
+			<input type="text" name="<?php echo $this->get_field_name( 'zlink' ); ?>"  value="<?php echo $instance['zlink']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'zlink' ); ?>" />
 		</p>
 		<?php
-			if ( $instance['username'] == '' ) {
+			if ( $instance['zlink'] == '' ) {
 		?>
-			<p class="submitbox"><small class="submitdelete"><?php echo __( 'Your WooThemes username is required.', 'woothemes' ); ?></small></p>
-			<p><small><?php printf( __( 'The WooThemes Affiliate Program is free to sign-up to for everyone. If you don\'t already have a WooThemes account, %s.', 'woothemes' ), '<a href="http://www.woothemes.com/affiliates/" target="_blank">' . __( 'Find out more & sign up here', 'woothemes' ) . '</a>' ); ?></small></p>
+			<p class="submitbox"><small class="submitdelete"><?php echo __( 'Your Zferral campaign link is required.', 'woothemes' ); ?></small></p>
+			<p><small><?php printf( __( 'The WooThemes Zferral Affiliate Program is free to sign-up to for everyone. %s.', 'woothemes' ), '<a href="http://www.woothemes.com/affiliate-program/" target="_blank">' . __( 'Go to your affiliate dashboard to sign up', 'woothemes' ) . '</a>' ); ?></small></p>
 		<?php
 			}
 		?>
+                        
 		<!-- Widget Display Type: Select Input -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'display_type' ); ?>"><?php _e( 'Display:', 'woothemes' ); ?></label>
@@ -279,7 +281,7 @@ class Woo_Affiliates extends WP_Widget {
 		
 		$defaults = array(
 			'product' => '', 
-			'username' => '', 
+            'zlink' => '', 
 			'type' => 'latest', 
 			'float' => 'left', 
 			'display_image' => true, 
@@ -292,7 +294,7 @@ class Woo_Affiliates extends WP_Widget {
 	
 		$atts = shortcode_atts( $defaults, $atts );
 	
-		if ( $atts['username'] == '' ) { return; } // We don't want to do anything further without a username.
+		if ( $atts['zlink'] == '' ) { return; } // We don't want to do anything further without a Zferral link.
 
 		// If "specific" is set and no product is specified, default to "latest".
 		if ( $atts['type'] == 'specific' && $atts['product'] == '' ) {
@@ -308,9 +310,9 @@ class Woo_Affiliates extends WP_Widget {
 			$args['products'] = array( $atts['product'] );
 		}
 		
-		// Username
-		if ( isset( $atts['username'] ) ) {
-			$args['username'] = $atts['username'];
+		// Zferral link
+		if ( isset( $atts['zlink'] ) ) {
+			$args['zlink'] = $atts['zlink'];
 		}
 		
 		// Display Type
@@ -410,7 +412,7 @@ class Woo_Affiliates extends WP_Widget {
 			break;
 		}
 		
-		$contents['username'] = $args['username'];
+		$contents['zlink'] = $args['zlink'];
 		$contents['display_image'] = $args['display_image'];
 		$contents['display_description'] = $args['display_description'];
 		$contents['display_category'] = $args['display_category'];
@@ -420,9 +422,9 @@ class Woo_Affiliates extends WP_Widget {
 		if ( $args['custom_description'] != '' ) {
 			$contents['description'] = $args['custom_description'];
 		}
-		
-		// Add username to affiliate link.
-		$contents['link'] = sprintf( $contents['link'], urlencode( $contents['username'] ) );
+                
+                //Get Zferrall link
+                $contents['link'] = $contents['zlink'] . '?d=' . $contents['permalink'];
 		
 		return $contents;
 	} // End get_contents()
@@ -435,10 +437,9 @@ class Woo_Affiliates extends WP_Widget {
 	 * @return string $html
 	 */
 	function display_contents ( $data ) {
+                
 		$html = '';
-		
-		// TO DO
-		
+
 		// Image
 		if ( $data['display_image'] == true && $data['image'] != '' ) {
 			$html .= '<div class="image-container">' . "\n";
@@ -454,7 +455,7 @@ class Woo_Affiliates extends WP_Widget {
 		
 		// Meta
 		if ( $data['display_meta'] == true ) {
-			$html .= '<p class="meta"><small>' . sprintf( __( 'By %s', 'woothemes' ), '<a href="http://woothemes.com/">WooThemes</a>' ) . '</small></p>' . "\n";
+			$html .= '<p class="meta"><small>' . sprintf( __( 'By %s', 'woothemes' ), '<a href="' . $data['zlink'] . '?d=http://woothemes.com/">WooThemes</a>' ) . '</small></p>' . "\n";
 		}
 		
 		// Description
@@ -467,7 +468,7 @@ class Woo_Affiliates extends WP_Widget {
 			$categories = array();
 			
 			foreach ( $data['categories'] as $k => $v ) {
-				$categories[] = '<a href="' . sprintf( $v['aff_url'], urlencode( $data['username'] ) ) . '">' . $v['name'] . '</a>';
+				$categories[] = '<a href="'. $data['zlink'] . '?d=' . $v['url'] . '">' . $v['name'] . '</a>';
 			}
 			$html .= '<p class="categories"><small>' . __( 'Theme Categories: ', 'woothemes' ) . ' ' . join( ', ', $categories ) . '</small></p>' . "\n";
 		}

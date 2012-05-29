@@ -3,7 +3,7 @@
 Plugin Name: WooThemes Affiliate Widget
 Plugin URI: http://woothemes.com/
 Description: Easily display your WooThemes affiliate links in a widget or shortcode.
-Version: 1.0.0
+Version: 1.1.0
 Author: Matty at WooThemes
 Author URI: http://woothemes.com/
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html

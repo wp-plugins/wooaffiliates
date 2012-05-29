@@ -1,10 +1,10 @@
 === WooAffiliates ===
-Contributors: woothemes, mattyza, warrenholmes
+Contributors: woothemes, mattyza, warrenholmes, hlashbrooke
 Donate Link: http://woothemes.com/
 Tags: widgets, affiliates, promotion
 Requires at least: 3.2
-Tested up to: 3.3
-Stable tag: 1.0.0
+Tested up to: 3.3.2
+Stable tag: 1.1.0
 
 Promote your WooThemes affiliate account (and your favourite WooThemes), using a slick widget on your website.
 
@@ -26,7 +26,9 @@ Choose from the latest, the most popular your favourite or a random WooTheme to 
 
 Automatic installation is the easiest option as WordPress handles the file transfers itself and you don’t even need to leave your web browser. To do an automatic install of WooAffiliates log in to your WordPress admin panel, navigate to the Plugins menu and click Add New. 
 
-In the search field type “WooAffiliates” and click Search Plugins. Once you’ve found the plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking Install Now. After clicking that link you will be asked if you’re sure you want to install the plugin. Click yes and WordPress will automatically complete the installation. 
+In the search field type “WooAffiliates” and click Search Plugins. Once you’ve found the plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking Install Now. After clicking that link you will be asked if you’re sure you want to install the plugin. Click "yes" and WordPress will automatically complete the installation.
+
+You can now setup and place your WooAffiliates widget under the "Appearance > Widgets" page.
 
 = Manual installation =
 
@@ -42,7 +44,7 @@ The WooAffiliates plugin works with a widget or a shortcode.
 
 The shortcode works as follows:
 
-[woo_affiliate username="woothemes"]
+[woo_affiliate zlink="http://zfer.us/abc123"]
 
 This is the bare-bones implementation of the shortcode. The following parameters are available:
 
@@ -64,10 +66,16 @@ For further documentation on using WooAffiliates, please sign up for free at htt
 
 == Changelog ==
 
+= 1.1.0 - 2012-05-29 = 
+* Updating widget to use new Zferral affiliate system.
+
 = 1.0.0 - 2011-12-06 = 
 * Initial Release. Woo!
 
 == Upgrade Notice ==
 
-= 1.0.0 - 2011-12-06 = 
+= 1.1.0 = 
+* The field for your WooThemes username has been replaced with your Zferral campaign ID link. You will need to update your widget settings accordingly.
+
+= 1.0.0 = 
 * Initial Release. Woo!
