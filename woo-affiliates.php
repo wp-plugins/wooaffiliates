@@ -2,8 +2,8 @@
 /*
 Plugin Name: WooThemes Affiliate Widget
 Plugin URI: http://woothemes.com/
-Description: Easily display your WooThemes affiliate links in a widget or shortcode.
-Version: 1.1.0
+Description: This plugin has been retired. Thanks for using it!
+Version: 0.0.0
 Author: Matty at WooThemes
 Author URI: http://woothemes.com/
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -23,9 +23,4 @@ License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-	require_once( 'classes/affiliates.class.php' );
-	
-	global $woo_affiliates;
-	
-	$woo_affiliates = new Woo_Affiliates();
 ?>
